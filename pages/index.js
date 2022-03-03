@@ -10,8 +10,31 @@ import PageNav from '../components/PageNav.js'
 import PerPage from '../components/PerPage.js'
 import Category from '../components/Category.js'
 
-export default function CoinsBoard() {
-	const [coins, setCoins] = useState([])
+export const getStaticProps = async () => {
+	let coins = []
+	fetch('https://api.coingecko.com/api/v3/coins/markets?' + 
+		new URLSearchParams({
+			vs_currency: 'usd', 
+			price_change_percentage: '1h,24h,7d,14d,30d,200d,1y',
+			per_page: 50,
+			page: 1,
+		})
+	)
+	.then(res => {
+		if(res.ok) return res.json()
+		else console.log("An error happened.")
+	})
+	.then(data => coins = data)
+	.catch(err => console.log(err))
+	return {
+		props: {
+			coins
+		}
+	}
+}
+
+export default function CoinsBoard(props) {
+	const [coins, setCoins] = useState(props.coins)
 	const [perpage, setPerpage] = useState(50)
 	const [page, setPage] = useState(1)
 	const [category, setCategory] = useState('all')
@@ -32,9 +55,7 @@ export default function CoinsBoard() {
 			if(res.ok) return res.json()
 			else console.log("An error happened.")
 		})
-		.then(data => {
-			setCoins(data)
-		})
+		.then(data => setCoins(data))
 		.catch(err => console.log(err))
 	}
 

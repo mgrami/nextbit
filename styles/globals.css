@@ -153,6 +153,7 @@ button:focus {
   width: 5em;
 }
 .refresh{
+  margin-left: 0.5em;
   margin-right: 0.5em;
   font-size: 1.5em;
   display: inline-block;
@@ -168,6 +169,7 @@ button:focus {
 }
 .refresh:active{
   border-radius: 1em;
+  background: #eee;
 }
 .search-container {
     display: flex;
