@@ -12,28 +12,25 @@ import Category from '../components/Category.js'
 
 export const getStaticProps = async () => {
 	let coins = []
-	fetch('https://api.coingecko.com/api/v3/coins/markets?' + 
-		new URLSearchParams({
-			vs_currency: 'usd', 
-			price_change_percentage: '1h,24h,7d,14d,30d,200d,1y',
-			per_page: 50,
-			page: 1,
-		})
-	)
-	.then(res => {
-		if(res.ok) return res.json()
-		else console.log("An error happened.")
-	})
-	.then(data => coins = data)
-	.catch(err => console.log(err))
+	try {
+		let res = await fetch('https://api.coingecko.com/api/v3/coins/markets?' + 
+			new URLSearchParams({
+				vs_currency: 'usd', 
+				price_change_percentage: '1h,24h,7d,14d,30d,200d,1y',
+				per_page: 50,
+				page: 1,
+			})
+		)
+		coins = await res.json()
+	} catch {}
+
 	return {
-		props: {
-			coins
-		}
+		props: { coins }
 	}
 }
 
 export default function CoinsBoard(props) {
+	console.log('props?.coins?.length: ', props?.coins?.length)
 	const [coins, setCoins] = useState(props.coins)
 	const [perpage, setPerpage] = useState(50)
 	const [page, setPage] = useState(1)
