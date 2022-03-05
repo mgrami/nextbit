@@ -16,8 +16,8 @@ export default function Row({ coin, show, handleShowId }) {
 			className="cell name"
 			style={{cursor: 'pointer', textDecoration: 'none', color: '#555'}}>
 			<span style={{display: 'inline-flex'}}>
-				{/*<img src={(coin.image).replace('large','thumb')} alt="alt.png" width="30vw" height="30vw"></img>*/}
-				<Image src={(coin.image).replace('large','thumb')} width="33" height="30" />
+				<img src={(coin.image).replace('large','thumb')} alt="alt.png" width="30vw" height="30vw"></img>
+				{/*<Image src={(coin.image).replace('large','thumb')} width="33" height="30" />*/}
 				<div style={{marginLeft: '7px'}}>
 					<div style={{fontWeight: 'bold'}}>{coin.symbol}</div>
 					<div style={{fontSize: '0.8em', overflowWrap: 'break-word'}}>{coin.name}</div>

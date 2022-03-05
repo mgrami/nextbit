@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
 
 export default function CoinsBoard(props) {
 	console.log('props?.coins?.length: ', props?.coins?.length)
-	const [coins, setCoins] = useState(props.coins)
+	const [coins, setCoins] = useState(props?.coins)
 	const [perpage, setPerpage] = useState(50)
 	const [page, setPage] = useState(1)
 	const [category, setCategory] = useState('all')
