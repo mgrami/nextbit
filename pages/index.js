@@ -10,7 +10,7 @@ import PageNav from '../components/PageNav.js'
 import PerPage from '../components/PerPage.js'
 import Category from '../components/Category.js'
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	let coins = []
 	try {
 		let res = await fetch('https://api.coingecko.com/api/v3/coins/markets?' + 
@@ -30,7 +30,7 @@ export const getStaticProps = async () => {
 }
 
 export default function CoinsBoard(props) {
-	console.log('props?.coins?.length: ', props?.coins?.length)
+	// console.log('props?.coins?.length: ', props?.coins?.length)
 	const [coins, setCoins] = useState(props?.coins)
 	const [perpage, setPerpage] = useState(50)
 	const [page, setPage] = useState(1)
